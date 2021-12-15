@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/add-base-url: "true"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+  name: rewrite
+spec:
+  rules:
+  - host: ms.com
+    http:
+      paths:
+      - path: /api/(.+)
+        pathType: Prefix
+        backend:
+          serviceName: express-js-service
+          servicePort: 80
+      - backend: 
+          serviceName: react-js-service
+          servicePort: 80

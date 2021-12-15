@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: react-js-deployment
+  labels:
+    app: reactjs
+spec:
+  template:
+    metadata:
+      name: reactjs
+      labels:
+        app: reactjs
+    spec:
+      containers:
+        - name: reactjs
+          image: eessaouira/basic_react_app
+          ports:
+            - containerPort: 8089
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reactjs

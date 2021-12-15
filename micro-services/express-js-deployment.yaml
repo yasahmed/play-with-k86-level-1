@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: expres-js-deployment
+  labels:
+    app: expressjs
+spec:
+  template:
+    metadata:
+      name: expressjs
+      labels:
+        app: expressjs
+    spec:
+      containers:
+        - name: expressjs
+          image: eessaouira/data_generator_api
+          ports:
+            - containerPort: 8089
+  replicas: 1
+  selector:
+    matchLabels:
+      app: expressjs
